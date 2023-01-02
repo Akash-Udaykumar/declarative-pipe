@@ -31,6 +31,17 @@ bat label: 'Test running', script: '''mvn test'''
        }
 
    }
+ 
+
+stage('Jacoco Coverage Report') {
+
+        steps{
+
+            jacoco()
+
+}
+
+}
 
  
 
