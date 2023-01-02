@@ -57,10 +57,8 @@ stage('SonarQube'){
 
 steps{
 
-bat label:'',script:'''mvn sonar:sonar\
-
--Dsonar.host.url=http://localhost:9000\
-
+bat label: '', script: '''mvn sonar:sonar \
+-Dsonar.host.url=http://localhost:9000 \
 -Dsonar.login=squ_fbf4e3cb9f7966c4412aa56a47ec81a9fcd29dd4'''
 
 }
@@ -68,10 +66,6 @@ bat label:'',script:'''mvn sonar:sonar\
    } 
 
   }
-post {
-       always {
-           cucumber '**/cucumber.json'
-       }
-   }
+
 
 }
