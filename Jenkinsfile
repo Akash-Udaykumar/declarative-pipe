@@ -1,8 +1,8 @@
 pipeline {
 
-  agent any
+agent any
 
-  stages {
+stages {
 
 stage('Maven Compile'){
 
@@ -31,7 +31,6 @@ bat label: 'Test running', script: '''mvn test'''
        }
 
    }
- 
 
 stage('Jacoco Coverage Report') {
 
@@ -42,8 +41,6 @@ stage('Jacoco Coverage Report') {
 }
 
 }
-
- 
 
 stage('Maven Package'){
 
@@ -56,13 +53,25 @@ bat label: 'Project packaging', script: '''mvn package'''
 }
 
 } 
+stage('SonarQube'){
+
+steps{
+
+bat label: '', script: '''mvn sonar:sonar \
+
+-Dsonar.host.url=http://localhost:9000 \
+
+-Dsonar.login=squ_fbf4e3cb9f7966c4412aa56a47ec81a9fcd29dd4'''
 
 }
+
+   } 
+
+  }
 post {
        always {
            cucumber '**/cucumber.json'
        }
    }
-
 
 }
